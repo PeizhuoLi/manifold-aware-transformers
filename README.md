@@ -37,7 +37,7 @@ We provide several pre-trained models trained on different datasets. Download th
 
 Run `demo.sh`.
 
-The prediction of the network will be stored in `[path to pre-trained model]/sequence/prediction.pkl`. The corresponding ground truth and body motion are stored in `gt.pkl` and `body.pkl` respectively. Please refer to [here](#mesh-sequence-format) for the specification and visualization of the predicted mesh sequence.
+The prediction of the network will be stored in `[path to pre-trained model]/sequence/prediction.pkl`. The corresponding ground truth and body motion are stored in `gt.pkl` and `body.pkl` respectively. Please refer to [here](#mesh-sequence-format-and-visualization) for the specification and visualization of the predicted mesh sequence.
 
 ### Mesh Sequence Format and Visualization
 
@@ -47,8 +47,21 @@ We provide a plugin for visualizing the mesh sequences directly in Blender [here
 
 ### Evaluation
 
-Coming soon.
+We provide a [small sample](https://drive.google.com/drive/folders/1Mp-wmlU3B-J47SoJU9et1-Z1xkt0iLeX?usp=share_link) of pre-processed VTO and CLOTH3D datasets for reproducing our quantitative evaluations. Please download and extract the sample data to the `data` directory directly under the root of the project directory.
 
+Use the following command to calculate the mean vertex error of the pre-trained models on VTO dataset:
+
+~~~bash
+python evaluate.py --dataset=vto
+~~~
+
+and for CLOTH3D dataset:
+
+~~~bash
+python evaluate.py --dataset=cloth3d
+~~~
+
+Due to the nondeterministic algorithms used in Pytorch, the results may differ in each run, and may also slightly differ from the numbers reported in the paper.
 
 ## Data Preprocessing
 
@@ -68,8 +81,11 @@ python parse_data_vto.py --data_path_prefix=[path to downloaded vto dataset] --s
 
 ### Cloth3D dataset
 
-Coming soon.
+Please download the CLOTH3D dataset from [here](https://chalearnlap.cvc.uab.cat/dataset/38/description/#), put the `DataReader` directory from the official [starter kit](http://158.109.8.102/CLOTH3D/StarterKit.zip) under `data/cloth3d`, and run the following command to preprocess the data:
 
+~~~bash
+python parse_data_cloth3d.py --data_path_prefix=[path to downloaded cloth3d dataset] --save_path=[path to save the preprocessed data]
+~~~
 
 
 ## Train from scratch
