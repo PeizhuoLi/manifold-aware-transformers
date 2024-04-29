@@ -1,0 +1,3 @@
+./data/vto-preprocessed/dress_shape05_01_01
+./data/vto-preprocessed/dress_shape05_05_20
+# and more...

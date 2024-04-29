@@ -90,7 +90,28 @@ python parse_data_cloth3d.py --data_path_prefix=[path to downloaded cloth3d data
 
 ## Train from scratch
 
-Coming soon.
+Training the model requires the preprocessed data. If you are using a different dataset, please modify the preprocessing script to adapt your dataset. 
+
+Although the dataset is preprocessed, additional calculation is carried out beforehand the training starts. Since the size of the datasets used is large, it is generally not possible to store all the precalculations in memory. Instead, the results are stored in to directory pointed by environment variable `$TMPDIR`. It is recommended to set this path to a high-speed SSD drive.
+
+Please compile the sequence used for training in a text file as the example demonstrated below.
+
+### VTO dataset
+
+Use the following command to train the model on the VTO dataset:
+
+~~~bash
+python train_frame_based.py --save_path=[path to save] --multiple_dataset=dataset/sequence_lists/vto-training-example.txt
+~~~
+
+
+### CLOTH3D dataset
+
+~~~bash
+python train_frame_based.py --save_path=[path to save] --multiple_dataset=dataset/sequence_lists/cloth3d-training-example.txt --gaussian_filter_sigma=1 --slowdown_ratio=2
+~~~
+
+CLOTH3D dataset is known to contain noisy simulation results. We mitigate this issue by applying a temporal smoothing filter to the ground truth data. The filter is applied with option `--gaussian_filter_sigma=1`. In addition, the dataset is generated at 60FPS, and is downsampled to 30FPS with option `--slowdown_ratio=2`.
 
 ## Acknowledgments
 

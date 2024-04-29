@@ -1,0 +1,3 @@
+./data/cloth3d-preprocessed/00001_Skirt_cotton
+./data/cloth3d-preprocessed/00007_Tshirt_cotton
+# and more...
